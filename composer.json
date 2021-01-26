@@ -16,9 +16,11 @@
     }
   },
   "require": {
-    "guzzlehttp/guzzle": "^7.0"
+    "guzzlehttp/guzzle": "^7.0",
+    "symfony/http-foundation": "^5.2"
   },
   "require-dev": {
-    "symfony/var-dumper": "^5.1.4"
+    "symfony/var-dumper": "^5.1.4",
+    "phpunit/phpunit": "^9.2.2"
   }
 }
