@@ -8,6 +8,7 @@ use Tripay\Request\InstruksiPembayaran;
 use Tripay\Request\KalkulatorBiaya;
 use Tripay\Request\MerchantChannelPembayaran;
 use Tripay\Request\Transaction;
+use Tripay\Request\Callback;
 
 /**
  * Class Main
@@ -86,6 +87,10 @@ class Main implements MainInterface {
         );
     }
 
+    /**
+     * @param string $merchantRef
+     * @return Transaction
+     */
     public function initTransaction(string $merchantRef)
     {
         return new Transaction(
@@ -94,6 +99,15 @@ class Main implements MainInterface {
             $this->privateKey,
             $this->merchantCode,
             $this->mode
+        );
+    }
+
+    /**
+     * @return Callback
+     */
+    public function initCallback() {
+        return new Callback(
+            $this->privateKey
         );
     }
 }

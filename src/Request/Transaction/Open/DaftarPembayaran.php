@@ -98,7 +98,7 @@ class DaftarPembayaran
      */
     public function getData()
     {
-        if ($this->getJson()->data) {
+        if ( isset($this->getJson()->data) ) {
             return $this->getJson()->data;
         }
 

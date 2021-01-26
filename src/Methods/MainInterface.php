@@ -26,4 +26,6 @@ interface MainInterface {
     public function initTransaction(
         string $merchantRef
     );
+
+    public function initCallback();
 }
