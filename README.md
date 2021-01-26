@@ -8,6 +8,8 @@ This package is un-official, already compatible with Composer, for more details 
 _This package is made to make it easier for php users_
 
 IMPORTANT: Make sure you read the documentation and understand what these methods are used for!
+
+need PHP 7 and above to use this package
 ## Instalation
 ```
 composer require muhammadnan/tripay-payment-gateway
