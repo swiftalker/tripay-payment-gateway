@@ -38,7 +38,6 @@ $transaction->setPayload([
     'return_url'        => 'https://domainanda.com/redirect',
     'expired_time'      => (time()+(24*60*60)), // 24 jam
     'signature'         => $init->createSignature()
-]
 ]); // set your payload, with more examples https://payment.tripay.co.id/developer
 
 $transaction->getPayload(); // get payload from set payload
