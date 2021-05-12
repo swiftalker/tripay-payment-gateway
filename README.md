@@ -261,9 +261,9 @@ $init->callbackSignature(); // callback signature
 
 for re-validation, tripay sends an event in the form of `payment_status` this package also captures that
 
-``php
+```php
 $init->callEvent(); // callback event, return `payment_status`
-``
+```
 
 ### Validate Signature
 To shorten the code, we prepared signature validation as well.
