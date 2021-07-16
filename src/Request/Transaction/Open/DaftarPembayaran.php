@@ -16,7 +16,7 @@ class DaftarPembayaran
      * URL
      */
     public const URL_SANDBOX = null;
-    public const URL_PRODUCTION = 'https://payment.tripay.co.id/api/open-payment/';
+    public const URL_PRODUCTION = 'https://tripay.co.id/api/open-payment/';
 
     /**
      * Detail Close Transaction constructor.

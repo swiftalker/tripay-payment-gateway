@@ -24,7 +24,7 @@ class Transaction implements RequestInterface {
      * URL
      */
     public const URL_SANDBOX = null;
-    public const URL_PRODUCTION = 'https://payment.tripay.co.id/api/open-payment/create';
+    public const URL_PRODUCTION = 'https://tripay.co.id/api/open-payment/create';
 
     /**
      * OpenTransaction constructor.

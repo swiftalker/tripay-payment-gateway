@@ -21,8 +21,8 @@ class Transaction implements RequestInterface {
     /**
      * URL
      */
-    public const URL_SANDBOX = 'https://payment.tripay.co.id/api-sandbox/transaction/create';
-    public const URL_PRODUCTION = 'https://payment.tripay.co.id/api/transaction/create';
+    public const URL_SANDBOX = 'https://tripay.co.id/api-sandbox/transaction/create';
+    public const URL_PRODUCTION = 'https://tripay.co.id/api/transaction/create';
 
     /**
      * CloseTransaction constructor.

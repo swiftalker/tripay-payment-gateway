@@ -20,8 +20,8 @@ class InstruksiPembayaran implements RequestInterface {
     private $mode;
     private $apiKey;
     private $code;
-    private const URL_SANDBOX = 'https://payment.tripay.co.id/api-sandbox/payment/instruction?';
-    private const URL_PRODUCTION = 'https://payment.tripay.co.id/api/payment/instruction?';
+    private const URL_SANDBOX = 'https://tripay.co.id/api-sandbox/payment/instruction?';
+    private const URL_PRODUCTION = 'https://tripay.co.id/api/payment/instruction?';
 
     /**
      * @var array

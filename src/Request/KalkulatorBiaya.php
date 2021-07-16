@@ -18,8 +18,8 @@ class KalkulatorBiaya implements RequestInterface
     private $apiKey;
     private $amount;
     private $code;
-    private const URL_SANDBOX = 'https://payment.tripay.co.id/api-sandbox/merchant/payment-channel?';
-    private const URL_PRODUCTION = 'https://payment.tripay.co.id/api/merchant/payment-channel?';
+    private const URL_SANDBOX = 'https://tripay.co.id/api-sandbox/merchant/payment-channel?';
+    private const URL_PRODUCTION = 'https://tripay.co.id/api/merchant/payment-channel?';
 
     /**
      * @var array

@@ -21,8 +21,8 @@ class ChannelPembayaran implements RequestInterface {
      */
     private $mode;
     private $apiKey;
-    private const URL_SANDBOX = 'https://payment.tripay.co.id/api-sandbox/payment/channel';
-    private const URL_PRODUCTION = 'https://payment.tripay.co.id/api/payment/channel';
+    private const URL_SANDBOX = 'https://tripay.co.id/api-sandbox/payment/channel';
+    private const URL_PRODUCTION = 'https://tripay.co.id/api/payment/channel';
 
     /**
      * @var array

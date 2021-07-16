@@ -21,8 +21,8 @@ class Detail implements RequestInterface {
     /**
      * URL
      */
-    public const URL_SANDBOX = 'https://payment.tripay.co.id/api-sandbox/transaction/detail';
-    public const URL_PRODUCTION = 'https://payment.tripay.co.id/api/transaction/detail';
+    public const URL_SANDBOX = 'https://tripay.co.id/api-sandbox/transaction/detail';
+    public const URL_PRODUCTION = 'https://tripay.co.id/api/transaction/detail';
 
     /**
      * Detail Close Transaction constructor.
