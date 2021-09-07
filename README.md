@@ -34,10 +34,10 @@ $main = new Main(
 
 or you can create or add env variable in your project (such as laravel, codeigniter) like this
 ```env
-TRIPAY_apiKey="DEV-xxxxx"
-TRIPAY_privateKey="khyk4-7z0vE-rII0y-PKJZR-dgFPo"
-TRIPAY_merchantCode=
-TRIPAY_mode=sandbox
+TRIPAY_apiKey='your-api-key'
+TRIPAY_privateKey='your-private-key'
+TRIPAY_merchantCode='your-merchant-code'
+TRIPAY_mode='sandbox' // fill for sandbox mode, leave blank if in production mode
 ```
 
 and after add env variable in your project declare main class like this
