@@ -284,5 +284,4 @@ $init->validateEvent(); // return `true` is PAID, `false` meaning UNPAID,REFUND,
 This package is tested using PHPunit, but mostly direct testing
 
 ## Contribute
-
-Project ini saya buat karena sebelumnya saya menggunakan tripay sebagai payment gateway, daripada kode saya nganggur jadi ada baiknya saya share. so, silahkan berkontribusi baik dari dokumentasi atau membenahi script dari package ini ;) 
+If you want to contribute this SDK, you can fork, edit and create pull request. And we will review your request and if we finish to review your request. We will merge your request to developemnt branch. Thanks
