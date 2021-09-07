@@ -2,6 +2,7 @@
 
 namespace Tripay;
 
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 use Tripay\Methods\MainInterface;
 use Tripay\Request\ChannelPembayaran;
 use Tripay\Request\InstruksiPembayaran;
@@ -9,6 +10,7 @@ use Tripay\Request\KalkulatorBiaya;
 use Tripay\Request\MerchantChannelPembayaran;
 use Tripay\Request\Transaction;
 use Tripay\Request\Callback;
+use Dotenv\Dotenv;
 
 /**
  * Class Main
@@ -33,7 +35,12 @@ class Main implements MainInterface {
      * @param string $merchantCode
      * @param string|string $mode
      */
-    public function __construct(string $apiKey, string $privateKey, string $merchantCode, string $mode = 'live') {
+    public function __construct(
+        string $apiKey = null, 
+        string $privateKey = null, 
+        string $merchantCode = null, 
+        string $mode = 'live'
+    ) {
         $this->apiKey = $apiKey;
         $this->privateKey = $privateKey;
         $this->merchantCode = $merchantCode;
@@ -109,5 +116,55 @@ class Main implements MainInterface {
         return new Callback(
             $this->privateKey
         );
+    }
+
+    /**
+     * Untuk membaca konfigurasi env
+     */
+    public function readenv(String $env_key = null)
+    {
+        $immutable = null;
+
+        switch ($this->detect_what_is_framework()) {
+            case 'laravel':
+                $immutable = base_path();
+                break;
+
+            case 'codeigniter':
+                $immutable = FCPATH;
+                break;
+
+            default:
+                $immutable = dirname(__DIR__);
+                break;
+        }
+
+        $dotenv = Dotenv::createImmutable($immutable);
+        $dotenv->load();
+        $dotenv->required('TRIPAY_apiKey');
+        $dotenv->required('TRIPAY_privateKey');
+        $dotenv->required("TRIPAY_merchantCode");
+        $dotenv->required("TRIPAY_mode");
+
+        if (empty($env_key)) {
+            return $_ENV;
+        }
+
+        return $_ENV[$env_key];
+    }
+
+    /**
+     * Mendeteksi apakah projek ini diinstal pada framework laravel?
+     * atau framework lainnya
+     */
+    public function detect_what_is_framework()
+    {
+        if (defined("LARAVEL_START") and class_exists(\Illuminate\Foundation\Application::class)) {
+            return "laravel";
+        } else if (class_exists(\CodeIgniter\CodeIgniter::class)) {
+            return "codeigniter";
+        }
+
+        return null;
     }
 }
