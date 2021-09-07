@@ -62,5 +62,4 @@ use Tripay\Main;
 //dd($transaction->getDaftarPembayaran('T2184-OP53-ZVEHCF')->getData());
 
 $main = new Main();
-//echo $main->readenv("privateKey");
-echo $main->detect_what_is_framework();
+echo $main->readenv("TRIPAY_privateKey");

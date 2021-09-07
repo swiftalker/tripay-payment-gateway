@@ -135,7 +135,12 @@ class Main implements MainInterface {
                 break;
 
             default:
-                $immutable = dirname(__DIR__);
+                if (file_exists(dirname(__DIR__) . DIRECTORY_SEPARATOR . "development_mode")) {
+                    $immutable = dirname(__DIR__);
+                } else {
+                    $immutable = dirname(__DIR__, 3);
+                }
+                
                 break;
         }
 
