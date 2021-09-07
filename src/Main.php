@@ -36,15 +36,15 @@ class Main implements MainInterface {
      * @param string|string $mode
      */
     public function __construct(
-        string $apiKey = null, 
-        string $privateKey = null, 
-        string $merchantCode = null, 
+        string $apiKey = null,
+        string $privateKey = null,
+        string $merchantCode = null,
         string $mode = 'live'
     ) {
-        $this->apiKey = $apiKey;
-        $this->privateKey = $privateKey;
-        $this->merchantCode = $merchantCode;
-        $this->mode = $mode;
+        $this->apiKey = $apiKey ?? $this->readenv('TRIPAY_apiKey');
+        $this->privateKey = $privateKey ?? $this->readenv('TRIPAY_privateKey');
+        $this->merchantCode = $merchantCode ?? $this->readenv('TRIPAY_merchantCode');
+        $this->mode = $mode ?? $this->readenv('TRIPAY_mode');
     }
 
     /**
