@@ -149,7 +149,7 @@ class Main implements MainInterface {
         $dotenv->required('TRIPAY_apiKey');
         $dotenv->required('TRIPAY_privateKey');
         $dotenv->required("TRIPAY_merchantCode");
-        $dotenv->required("TRIPAY_mode");
+        //$dotenv->required("TRIPAY_mode");
 
         if (empty($env_key)) {
             return $_ENV;
