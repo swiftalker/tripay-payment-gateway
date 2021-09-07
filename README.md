@@ -70,7 +70,7 @@ request can return the available content, the list of available methods is as fo
 | `getResponse()`  | return response |
 | `getJson()`  | return json decode  |
 | `getStatusCode()`  | return status code  |
-| `getStatusCode()`  | return boolean  |
+| `getSuccess()`  | return boolean  |
 | `getData()`  | return data response  |
 
 ## Channel Pembayaran
