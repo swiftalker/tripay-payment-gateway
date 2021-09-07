@@ -4,7 +4,7 @@ Un-official Tripay Payment Gateway
 [![Total Downloads](https://poser.pugx.org/muhammadnan/tripay-payment-gateway/downloads)](//packagist.org/packages/muhammadnan/tripay-payment-gateway)
 [![License](https://poser.pugx.org/muhammadnan/tripay-payment-gateway/license)](//packagist.org/packages/muhammadnan/tripay-payment-gateway)
 
-This package is un-official, already compatible with Composer, for more details please visit [Documentation](https://payment.tripay.co.id/developer).
+This package is un-official, already compatible with Composer, for more details please visit [Documentation](https://tripay.co.id/developer).
 _This package is made to make it easier for php users_
 
 IMPORTANT: Make sure you read the documentation and understand what these methods are used for!
