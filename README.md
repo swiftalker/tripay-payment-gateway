@@ -31,6 +31,22 @@ $main = new Main(
     'sandbox' // fill for sandbox mode, leave blank if in production mode
 );
 ```
+
+or you can create or add env variable in your laravel (such as laravel, codeigniter) like this
+```env
+TRIPAY_apiKey="DEV-xxxxx"
+TRIPAY_privateKey="khyk4-7z0vE-rII0y-PKJZR-dgFPo"
+TRIPAY_merchantCode=
+TRIPAY_mode=sandbox
+```
+
+and after add env variable in your project declare main class like this
+
+``php
+<?php>
+$main = new Main();
+```
+
 For mode by default it will be in production mode, to change it to sandbox mode, you can add a 'sandbox' after the merchant code
 
 ## Contents available
