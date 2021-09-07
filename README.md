@@ -32,7 +32,7 @@ $main = new Main(
 );
 ```
 
-or you can create or add env variable in your laravel (such as laravel, codeigniter) like this
+or you can create or add env variable in your project (such as laravel, codeigniter) like this
 ```env
 TRIPAY_apiKey="DEV-xxxxx"
 TRIPAY_privateKey="khyk4-7z0vE-rII0y-PKJZR-dgFPo"
