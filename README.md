@@ -43,7 +43,6 @@ TRIPAY_mode=sandbox
 and after add env variable in your project declare main class like this
 
 ```php
-<?php>
 $main = new Main();
 ```
 
