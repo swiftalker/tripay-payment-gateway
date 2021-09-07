@@ -88,7 +88,7 @@ the next method can be seen in the [request method](#request-available) or can b
 This API is used to retrieve payment instructions from each channel
 
 ```php
-$code = 'BRIVA'; //more info code, https://payment.tripay.co.id/developer
+$code = 'BRIVA'; //more info code, https://tripay.co.id/developer
 $init = $main->initInstruksiPembayaran($code)
 ```
 
@@ -109,7 +109,8 @@ the next method can be seen in the [request method](#request-available) or can b
 This API is used to obtain detailed transaction fee calculations for each channel based on a specified nominal
 
 ```php
-$code = 'BRIVA'; //more info code, https://payment.tripay.co.id/developer
+$code = 'BRIVA'; //more info code, https://
+.co.id/developer
 $amount = 1000;//your amount
 $init = $main->initKalkulatorBiaya($code, $amount);
 ```
@@ -148,7 +149,7 @@ After you define a close transaction, please set the payload with the `setPayloa
 ****examples:****
 ```php
 $transaction->setPayload([
-    'method'            => 'BRIVA', // IMPORTANT, dont fill by `getMethod()`!, for more code method you can check here https://payment.tripay.co.id/developer
+    'method'            => 'BRIVA', // IMPORTANT, dont fill by `getMethod()`!, for more code method you can check here https://tripay.co.id/developer
     'merchant_ref'      => $merchantRef,
     'amount'            => $init->getAmount(),
     'customer_name'     => 'Nama Pelanggan',
@@ -166,7 +167,7 @@ $transaction->setPayload([
     'return_url'        => 'https://domainanda.com/redirect',
     'expired_time'      => (time()+(24*60*60)), // 24 jam
     'signature'         => $init->createSignature()
-]); // set your payload, with more examples https://payment.tripay.co.id/developer
+]); // set your payload, with more examples https://tripay.co.id/developer
 ```
 
 for get the payload u can use ```getPayload()``` method,
@@ -196,11 +197,11 @@ After you define a open transaction, please set the payload with the `setPayload
 ****examples:****
 ```php
 $transaction->setPayload([
-    'method'            => $this->getMethod(),
+    'method'            => $init->getMethod(),
     'merchant_ref'      => $merchantRef,
     'customer_name'     => 'Nama Pelanggan',
     'signature'         => $init->createSignature()
-]); // set your payload, with more examples https://payment.tripay.co.id/developer
+]); // set your payload, with more examples https://tripay.co.id/developer
 ```
 
 for get the payload u can use ```getPayload()``` method,
