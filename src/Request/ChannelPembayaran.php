@@ -62,7 +62,13 @@ class ChannelPembayaran implements RequestInterface {
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getRequest(string $url) : object {
+    public function getRequest(string $url = null) : object {
+        if ($this->mode === 'live') {
+            $url = self::URL_PRODUCTION;
+        } else {
+            $url = self::URL_SANDBOX;
+        }
+
         $client = new Client();
         $res = $client->request('GET', $url, [
             'headers' => [
@@ -102,7 +108,7 @@ class ChannelPembayaran implements RequestInterface {
      */
     public function getSuccess() : bool
     {
-        return $this->getJson()->success;
+        return (bool) $this->getJson()->success;
     }
 
     /**

@@ -1,11 +1,11 @@
 <?php
 /**
- * Use this autoload (not composer autoload) 
+ * Use this autoload (not composer autoload)
  * if you want to developemnt this package
  */
-spl_autoload_register(function($className) {
-    $src_folder = dirname(__FILE__) . DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR;
-	$file = $src_folder . $className . '.php';
+spl_autoload_register(function($filename) {
+    $src_folder = dirname(__FILE__) . "/src/";
+	$file = $src_folder . str_replace("Tripay\\", "", $filename) . '.php';
 	if (file_exists($file)) {
 		include_once $file;
 	} else {

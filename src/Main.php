@@ -44,7 +44,7 @@ class Main implements MainInterface {
         $this->apiKey = $apiKey ?? $this->readenv('TRIPAY_apiKey');
         $this->privateKey = $privateKey ?? $this->readenv('TRIPAY_privateKey');
         $this->merchantCode = $merchantCode ?? $this->readenv('TRIPAY_merchantCode');
-        $this->mode = $mode ?? $this->readenv('TRIPAY_mode');
+        $this->mode = $this->readenv('TRIPAY_mode') ?? $mode;
     }
 
     /**
