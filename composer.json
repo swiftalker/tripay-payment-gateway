@@ -26,6 +26,6 @@
   },
   "require-dev": {
     "symfony/var-dumper": "^5.1.4",
-    "phpunit/phpunit": "^9.2.2"
+    "pestphp/pest": "^1.18"
   }
 }

@@ -7,6 +7,7 @@ use Tripay\Methods\AbstractEngine;
 use Tripay\Methods\RequestInterface;
 use Tripay\Request\Traits\MainTraits;
 use GuzzleHttp\Client;
+use function PHPUnit\Framework\throwException;
 
 /**
  * Class ChannelPembayaran
@@ -62,13 +63,7 @@ class ChannelPembayaran implements RequestInterface {
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getRequest(string $url = null) : object {
-        if ($this->mode === 'live') {
-            $url = self::URL_PRODUCTION;
-        } else {
-            $url = self::URL_SANDBOX;
-        }
-
+    public function getRequest(string $url) : object {
         $client = new Client();
         $res = $client->request('GET', $url, [
             'headers' => [
@@ -108,7 +103,7 @@ class ChannelPembayaran implements RequestInterface {
      */
     public function getSuccess() : bool
     {
-        return (bool) $this->getJson()->success;
+        return $this->getJson()->success;
     }
 
     /**
