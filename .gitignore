@@ -1,0 +1,4 @@
+.env
+.env.backup
+/vendor
+development_mode

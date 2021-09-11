@@ -1,4 +1,4 @@
-Un-official Tripay Payment Gateway
+Dev Branch Tripay Payment Gateway
 ===============
 [![Latest Stable Version](https://poser.pugx.org/muhammadnan/tripay-payment-gateway/v)](//packagist.org/packages/muhammadnan/tripay-payment-gateway)
 [![Total Downloads](https://poser.pugx.org/muhammadnan/tripay-payment-gateway/downloads)](//packagist.org/packages/muhammadnan/tripay-payment-gateway)
@@ -31,6 +31,21 @@ $main = new Main(
     'sandbox' // fill for sandbox mode, leave blank if in production mode
 );
 ```
+
+or you can create or add env variable in your project (such as laravel, codeigniter) like this
+```env
+TRIPAY_apiKey='your-api-key'
+TRIPAY_privateKey='your-private-key'
+TRIPAY_merchantCode='your-merchant-code'
+TRIPAY_mode='sandbox' // fill for sandbox mode, leave blank if in production mode
+```
+
+and after add env variable in your project declare main class like this
+
+```php
+$main = new Main();
+```
+
 For mode by default it will be in production mode, to change it to sandbox mode, you can add a 'sandbox' after the merchant code
 
 ## Contents available
@@ -55,7 +70,7 @@ request can return the available content, the list of available methods is as fo
 | `getResponse()`  | return response |
 | `getJson()`  | return json decode  |
 | `getStatusCode()`  | return status code  |
-| `getStatusCode()`  | return boolean  |
+| `getSuccess()`  | return boolean  |
 | `getData()`  | return data response  |
 
 ## Channel Pembayaran
@@ -73,7 +88,7 @@ the next method can be seen in the [request method](#request-available) or can b
 This API is used to retrieve payment instructions from each channel
 
 ```php
-$code = 'BRIVA'; //more info code, https://payment.tripay.co.id/developer
+$code = 'BRIVA'; //more info code, https://tripay.co.id/developer
 $init = $main->initInstruksiPembayaran($code)
 ```
 
@@ -94,7 +109,8 @@ the next method can be seen in the [request method](#request-available) or can b
 This API is used to obtain detailed transaction fee calculations for each channel based on a specified nominal
 
 ```php
-$code = 'BRIVA'; //more info code, https://payment.tripay.co.id/developer
+$code = 'BRIVA'; //more info code, https://
+.co.id/developer
 $amount = 1000;//your amount
 $init = $main->initKalkulatorBiaya($code, $amount);
 ```
@@ -133,7 +149,7 @@ After you define a close transaction, please set the payload with the `setPayloa
 ****examples:****
 ```php
 $transaction->setPayload([
-    'method'            => 'BRIVA', // IMPORTANT, dont fill by `getMethod()`!, for more code method you can check here https://payment.tripay.co.id/developer
+    'method'            => 'BRIVA', // IMPORTANT, dont fill by `getMethod()`!, for more code method you can check here https://tripay.co.id/developer
     'merchant_ref'      => $merchantRef,
     'amount'            => $init->getAmount(),
     'customer_name'     => 'Nama Pelanggan',
@@ -151,7 +167,7 @@ $transaction->setPayload([
     'return_url'        => 'https://domainanda.com/redirect',
     'expired_time'      => (time()+(24*60*60)), // 24 jam
     'signature'         => $init->createSignature()
-]); // set your payload, with more examples https://payment.tripay.co.id/developer
+]); // set your payload, with more examples https://tripay.co.id/developer
 ```
 
 for get the payload u can use ```getPayload()``` method,
@@ -181,11 +197,11 @@ After you define a open transaction, please set the payload with the `setPayload
 ****examples:****
 ```php
 $transaction->setPayload([
-    'method'            => $this->getMethod(),
+    'method'            => $init->getMethod(),
     'merchant_ref'      => $merchantRef,
     'customer_name'     => 'Nama Pelanggan',
     'signature'         => $init->createSignature()
-]); // set your payload, with more examples https://payment.tripay.co.id/developer
+]); // set your payload, with more examples https://tripay.co.id/developer
 ```
 
 for get the payload u can use ```getPayload()``` method,
