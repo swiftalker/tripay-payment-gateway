@@ -2,7 +2,6 @@
   "name": "muhammadnan/tripay-payment-gateway",
   "description": "PHP Payment Gateway Tripay Library",
   "homepage": "https://payment.tripay.co.id",
-  "version": "1.0.3",
   "license":"GPL-3.0",
   "authors": [
     {
