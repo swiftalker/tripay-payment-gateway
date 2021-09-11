@@ -1,4 +1,4 @@
-Dev Branch Tripay Payment Gateway
+Unofficial Tripay Payment Gateway
 ===============
 [![Latest Stable Version](https://poser.pugx.org/muhammadnan/tripay-payment-gateway/v)](//packagist.org/packages/muhammadnan/tripay-payment-gateway)
 [![Total Downloads](https://poser.pugx.org/muhammadnan/tripay-payment-gateway/downloads)](//packagist.org/packages/muhammadnan/tripay-payment-gateway)
