@@ -28,6 +28,8 @@ class Main implements MainInterface {
     private $mode;
 
     /**
+     * Set Parameter
+     * 
      * Main constructor.
      * @param string $apiKey
      * @param string $privateKey
@@ -56,10 +58,16 @@ class Main implements MainInterface {
                 throw new \Exception('Merchant Code harus di isi!');
             }
 
-            $this->mode = $mode ?? $this->readEnv('TRIPAY_MODE');
-            if (is_null($this->mode) || $this->mode == '') {
-                throw new \Exception('Mode harus di isi!');
+            // variable $mode akan lebih diprioritaskan
+            if (!empty($mode)) {
+                $modeVar = $mode;
+            } else if (!empty($this->readEnv('TRIPAY_MODE'))) {
+                $modeVar = $this->readEnv('TRIPAY_MODE');
+            } else {
+                $modeVar = 'live';
             }
+
+            $this->mode = $modeVar == 'live' || $modeVar == 'sandbox' ? $modeVar : 'live';
         } catch (\Exception $e) {
             echo $e->getMessage();
             exit();
