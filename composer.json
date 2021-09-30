@@ -2,7 +2,6 @@
   "name": "muhammadnan/tripay-payment-gateway",
   "description": "PHP Payment Gateway Tripay Library",
   "homepage": "https://payment.tripay.co.id",
-  "version": "1.0.1",
   "license":"GPL-3.0",
   "authors": [
     {
@@ -26,6 +25,6 @@
   },
   "require-dev": {
     "symfony/var-dumper": "^5.1.4",
-    "phpunit/phpunit": "^9.2.2"
+    "pestphp/pest": "^1.18"
   }
 }

@@ -2,7 +2,6 @@
 
 namespace Tripay;
 
-require_once dirname(__DIR__) . '/vendor/autoload.php';
 use Tripay\Methods\MainInterface;
 use Tripay\Request\ChannelPembayaran;
 use Tripay\Request\InstruksiPembayaran;
@@ -29,6 +28,8 @@ class Main implements MainInterface {
     private $mode;
 
     /**
+     * Set Parameter
+     * 
      * Main constructor.
      * @param string $apiKey
      * @param string $privateKey
@@ -39,12 +40,38 @@ class Main implements MainInterface {
         string $apiKey = null,
         string $privateKey = null,
         string $merchantCode = null,
-        string $mode = 'live'
+        string $mode = null
     ) {
-        $this->apiKey = $apiKey ?? $this->readenv('TRIPAY_apiKey');
-        $this->privateKey = $privateKey ?? $this->readenv('TRIPAY_privateKey');
-        $this->merchantCode = $merchantCode ?? $this->readenv('TRIPAY_merchantCode');
-        $this->mode = $this->readenv('TRIPAY_mode') ?? $mode;
+        try {
+            $this->apiKey = $apiKey ?? $this->readEnv('TRIPAY_API_KEY');
+            if (is_null($this->apiKey) || $this->apiKey == '') {
+                throw new \Exception('Api Key harus di isi!');
+            }
+
+            $this->privateKey = $privateKey ?? $this->readEnv('TRIPAY_PRIVATE_KEY');
+            if (is_null($this->privateKey) || $this->privateKey == '') {
+                throw new \Exception('Private Key harus di isi!');
+            }
+
+            $this->merchantCode = $merchantCode ?? $this->readEnv('TRIPAY_MERCHANT_CODE');
+            if (is_null($this->merchantCode) || $this->merchantCode == '') {
+                throw new \Exception('Merchant Code harus di isi!');
+            }
+
+            // variable $mode akan lebih diprioritaskan
+            if (!empty($mode)) {
+                $modeVar = $mode;
+            } else if (!empty($this->readEnv('TRIPAY_MODE'))) {
+                $modeVar = $this->readEnv('TRIPAY_MODE');
+            } else {
+                $modeVar = 'live';
+            }
+
+            $this->mode = $modeVar == 'live' || $modeVar == 'sandbox' ? $modeVar : 'live';
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            exit();
+        }
     }
 
     /**
@@ -121,11 +148,11 @@ class Main implements MainInterface {
     /**
      * Untuk membaca konfigurasi env
      */
-    public function readenv(String $env_key = null)
+    public function readEnv(String $env_key = null)
     {
         $immutable = null;
 
-        switch ($this->detect_what_is_framework()) {
+        switch ($this->detectWhatIsFramework()) {
             case 'laravel':
                 $immutable = base_path();
                 break;
@@ -135,21 +162,16 @@ class Main implements MainInterface {
                 break;
 
             default:
-                if (file_exists(dirname(__DIR__) . DIRECTORY_SEPARATOR . "development_mode")) {
-                    $immutable = dirname(__DIR__);
-                } else {
-                    $immutable = dirname(__DIR__, 3);
-                }
-                
+                $immutable = dirname(__DIR__);
                 break;
         }
 
         $dotenv = Dotenv::createImmutable($immutable);
         $dotenv->load();
-        $dotenv->required('TRIPAY_apiKey');
-        $dotenv->required('TRIPAY_privateKey');
-        $dotenv->required("TRIPAY_merchantCode");
-        //$dotenv->required("TRIPAY_mode");
+        $dotenv->required('TRIPAY_API_KEY');
+        $dotenv->required('TRIPAY_PRIVATE_KEY');
+        $dotenv->required("TRIPAY_MERCHANT_CODE");
+        $dotenv->required("TRIPAY_MODE");
 
         if (empty($env_key)) {
             return $_ENV;
@@ -162,7 +184,7 @@ class Main implements MainInterface {
      * Mendeteksi apakah projek ini diinstal pada framework laravel?
      * atau framework lainnya
      */
-    public function detect_what_is_framework()
+    public function detectWhatIsFramework()
     {
         if (defined("LARAVEL_START") and class_exists(\Illuminate\Foundation\Application::class)) {
             return "laravel";
