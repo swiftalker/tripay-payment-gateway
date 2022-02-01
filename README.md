@@ -57,6 +57,7 @@ content method available so far
 | `initInstruksiPembayaran(string $code)` | `Instruksi Pembayaran` | OK |
 | `initMerchantChannelPembayaran(string $code)` | `Merchant Channel Pembayaran` | OK |
 | `initKalkulatorBiaya(string $code, int $amount)` | `Kalkulator Biaya` | OK |
+| `initDaftarTransaksi(int $page = 1, int $per_page = 50, string $sort = 'desc', string $reference = null, string $merchant_ref = null, string $method = null,string $status = null)` | `Daftar Transaksi` | OK |
 | `initTransaction(string $merchantRef)` | `Transaksi Open/Close` | OK |
 | `initCallback()` | `Callback` | OK |
 
@@ -99,7 +100,7 @@ the next method can be seen in the [request method](#request-available) or can b
 This API is used to obtain a list of payment channels available in your Merchant account along with complete information including transaction fees for each channel
 
 ```php 
-$code = 'BRIVA'; //more info code, check your account
+$code = 'BRIVA'; //more info code, https://tripay.co.id/developer
 $init = $main->initMerchantChannelPembayaran($code);
 ```
 
@@ -109,10 +110,34 @@ the next method can be seen in the [request method](#request-available) or can b
 This API is used to obtain detailed transaction fee calculations for each channel based on a specified nominal
 
 ```php
-$code = 'BRIVA'; //more info code, https://
-.co.id/developer
+$code = 'BRIVA'; //more info code, https://tripay.co.id/developer
 $amount = 1000;//your amount
 $init = $main->initKalkulatorBiaya($code, $amount);
+```
+
+the next method can be seen in the [request method](#request-available) or can be seen in examples
+
+## Daftar Transaksi
+This API is used to obtain detailed transaction fee calculations for each channel based on a specified nominal
+
+```php
+$page = 1;
+$per_page = 50; 
+$sort = 'desc';
+$reference = 'T0001000000455HFGRY';
+$merchant_ref = 'INV57564';
+$method = 'BRIVA';
+$status = 'PAID';
+
+$init = $main->initDaftarTransaksi(
+    $page,
+    $per_page, 
+    $sort, 
+    $reference, 
+    $merchant_ref, 
+    $method, 
+    $status
+);
 ```
 
 the next method can be seen in the [request method](#request-available) or can be seen in examples
