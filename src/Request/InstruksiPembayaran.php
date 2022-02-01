@@ -19,9 +19,13 @@ class InstruksiPembayaran implements RequestInterface {
      */
     private $mode;
     private $apiKey;
-    private $code;
-    private const URL_SANDBOX = 'https://tripay.co.id/api-sandbox/payment/instruction?';
-    private const URL_PRODUCTION = 'https://tripay.co.id/api/payment/instruction?';
+    protected $code;
+    protected $payCode;
+    protected $amount;
+    protected $allowHtml;
+
+    protected const URL_SANDBOX = 'https://tripay.co.id/api-sandbox/payment/instruction?';
+    protected const URL_PRODUCTION = 'https://tripay.co.id/api/payment/instruction?';
 
     /**
      * @var array
@@ -36,10 +40,20 @@ class InstruksiPembayaran implements RequestInterface {
      * @param $apiKey
      * @param $mode
      */
-    public function __construct($code = null, $apiKey, $mode) {
+    public function __construct(
+        $apiKey,
+        $mode,
+        string $code, 
+        string $payCode = null, 
+        int $amount = null, 
+        int $allowHtml = null
+    ) {
         $this->mode = $mode;
         $this->apiKey = $apiKey;
         $this->code = $code;
+        $this->payCode = $payCode;
+        $this->amount = $amount;
+        $this->allowHtml = $allowHtml;
     }
 
     /**
@@ -66,13 +80,21 @@ class InstruksiPembayaran implements RequestInterface {
      */
     public function getRequest(string $url) : object {
         $client = new Client();
-        $res = $client->request('GET', $url.http_build_query(['code' => $this->code]), [
+
+        $payload = [
+            'code' => $this->code, 
+            'pay_code' => $this->payCode, 
+            'amount' => $this->amount, 
+            'allow_html' => $this->allowHtml
+        ];
+
+        $res = $client->request('GET', $url.http_build_query($payload), [
             'headers' => [
                 "Authorization" => 'Bearer '.$this->apiKey
             ]
         ]);
-        return $res;
 
+        return $res;
     }
 
     /**

@@ -1,13 +1,7 @@
-<?php
+<?php namespace Tripay\Request;
 
-namespace Tripay\Request;
-
-use phpDocumentor\Reflection\Types\Object_;
-use Tripay\Methods\AbstractEngine;
 use Tripay\Methods\RequestInterface;
-use Tripay\Request\Traits\MainTraits;
 use GuzzleHttp\Client;
-use function PHPUnit\Framework\throwException;
 
 /**
  * Class ChannelPembayaran
@@ -22,8 +16,10 @@ class ChannelPembayaran implements RequestInterface {
      */
     private $mode;
     private $apiKey;
-    private const URL_SANDBOX = 'https://tripay.co.id/api-sandbox/payment/channel';
-    private const URL_PRODUCTION = 'https://tripay.co.id/api/payment/channel';
+    public $code;
+
+    public const URL_SANDBOX = 'https://tripay.co.id/api-sandbox/payment/channel?';
+    public const URL_PRODUCTION = 'https://tripay.co.id/api/payment/channel?';
 
     /**
      * @var array
@@ -37,13 +33,14 @@ class ChannelPembayaran implements RequestInterface {
      * @param $mode
      * @param $apiKey
      */
-    public function __construct($apiKey, $mode) {
+    public function __construct($apiKey, $mode, $code = null) {
         $this->mode = $mode;
         $this->apiKey = $apiKey;
+        $this->code = $code;
     }
 
     /**
-     * @return array
+     * @return object
      */
     public function getChannelPembayaran()
     {
@@ -65,7 +62,7 @@ class ChannelPembayaran implements RequestInterface {
      */
     public function getRequest(string $url) : object {
         $client = new Client();
-        $res = $client->request('GET', $url, [
+        $res = $client->request('GET', $url.http_build_query(['code' => $this->code]), [
             'headers' => [
                 "Authorization" => 'Bearer '.$this->apiKey
             ]

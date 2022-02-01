@@ -1,5 +1,6 @@
 <?php require 'vendor/autoload.php';
 use Tripay\Main;
+use Tripay\Request\MerchantChannelPembayaran;
 
 $main =  new Main(
     'your-api-key',
@@ -12,7 +13,8 @@ $init = $main->initMerchantChannelPembayaran($code);
 
 $init->getMerchantChannelPembayaran(); // return guzzle http client
 
-$init->getRequest(); // return guzzle http client
+$merchantChannelPembayaran = MerchantChannelPembayaran::URL_SANDBOX; // available URL_SANDBOX or URL_PRODUCTION
+$init->getRequest($merchantChannelPembayaran); // return guzzle http client
 
 $init->getJson(); //return json decode
 
