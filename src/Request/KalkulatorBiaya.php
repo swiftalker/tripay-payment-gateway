@@ -16,10 +16,11 @@ class KalkulatorBiaya implements RequestInterface
      */
     private $mode;
     private $apiKey;
-    private $amount;
-    private $code;
-    private const URL_SANDBOX = 'https://tripay.co.id/api-sandbox/merchant/payment-channel?';
-    private const URL_PRODUCTION = 'https://tripay.co.id/api/merchant/payment-channel?';
+    public $amount;
+    public $code;
+    
+    public const URL_SANDBOX = 'https://tripay.co.id/api-sandbox/merchant/payment-channel?';
+    public const URL_PRODUCTION = 'https://tripay.co.id/api/merchant/payment-channel?';
 
     /**
      * @var array
@@ -42,7 +43,7 @@ class KalkulatorBiaya implements RequestInterface
     }
 
     /**
-     * @return array
+     * @return object
      */
     public function getKalkulatorBiaya()
     {
@@ -70,7 +71,6 @@ class KalkulatorBiaya implements RequestInterface
             ]
         ]);
         return $res;
-
     }
 
     /**

@@ -6,6 +6,7 @@ use Tripay\Methods\MainInterface;
 use Tripay\Request\ChannelPembayaran;
 use Tripay\Request\InstruksiPembayaran;
 use Tripay\Request\KalkulatorBiaya;
+use Tripay\Request\DaftarTransaksi;
 use Tripay\Request\MerchantChannelPembayaran;
 use Tripay\Request\Transaction;
 use Tripay\Request\Callback;
@@ -77,19 +78,57 @@ class Main implements MainInterface {
     /**
      * @return ChannelPembayaran
      */
-    public function initChannelPembayaran() {
+    public function initChannelPembayaran($code = null) {
         return new ChannelPembayaran(
             $this->apiKey,
-            $this->mode
+            $this->mode, 
+            $code
         );
     }
-
+    
+    /**
+     * @return DaftarTransaksi
+     */
+    public function initDaftarTransaksi(
+        int $page = 1, 
+        int $per_page = 50, 
+        string $sort = 'desc',
+        string $reference = null,
+        string $merchant_ref = null,
+        string $method = null,
+        string $status = null
+    ) {
+        return new DaftarTransaksi(
+            $this->apiKey,
+            $this->mode,
+            $page,
+            $per_page,
+            $sort,
+            $reference,
+            $merchant_ref,
+            $method,
+            $status
+        );
+    }
     /**
      * @param $code
      * @return InstruksiPembayaran
      */
-    public function initInstruksiPembayaran(string $code) {
-        return new InstruksiPembayaran($code, $this->apiKey, $this->mode);
+    public function initInstruksiPembayaran(
+        string $code, 
+        string $payCode = null, 
+        int $amount = null, 
+        int $allowHtml = null
+    ) {
+        return new InstruksiPembayaran(
+        
+            $this->apiKey,
+            $this->mode,
+            $code,
+            $payCode,
+            $amount,
+            $allowHtml
+        );
     }
 
     /**
@@ -167,17 +206,19 @@ class Main implements MainInterface {
         }
 
         $dotenv = Dotenv::createImmutable($immutable);
-        $dotenv->load();
-        $dotenv->required('TRIPAY_API_KEY');
-        $dotenv->required('TRIPAY_PRIVATE_KEY');
-        $dotenv->required("TRIPAY_MERCHANT_CODE");
-        $dotenv->required("TRIPAY_MODE");
+        $load = $dotenv->safeLoad();
 
-        if (empty($env_key)) {
-            return $_ENV;
+        if ( ! empty($load)) {
+            $dotenv->required(['TRIPAY_API_KEY', 'TRIPAY_PRIVATE_KEY', 'TRIPAY_MERCHANT_CODE', 'TRIPAY_MODE']);
+
+            if (empty($env_key)) {
+                return $_ENV;
+            }
+
+            return $_ENV[$env_key];
         }
-
-        return $_ENV[$env_key];
+        
+        return null;
     }
 
     /**

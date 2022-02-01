@@ -1,5 +1,6 @@
 <?php require 'vendor/autoload.php';
 use Tripay\Main;
+use Tripay\Request\KalkulatorBiaya;
 
 $main =  new Main(
     'your-api-key',
@@ -14,7 +15,8 @@ $init = $main->initKalkulatorBiaya($code, $amount);
 
 $init->getKalkulatorBiaya(); // return guzzle http client
 
-$init->getRequest(); // return guzzle http client
+$kalkulatorBiaya = KalkulatorBiaya::URL_SANDBOX; // available URL_SANDBOX or URL_PRODUCTION
+$init->getRequest($kalkulatorBiaya); // return guzzle http client
 
 $init->getJson(); //return json decode
 
