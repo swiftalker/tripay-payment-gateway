@@ -57,7 +57,7 @@ content method available so far
 | `initInstruksiPembayaran(string $code)` | `Instruksi Pembayaran` | OK |
 | `initMerchantChannelPembayaran(string $code)` | `Merchant Channel Pembayaran` | OK |
 | `initKalkulatorBiaya(string $code, int $amount)` | `Kalkulator Biaya` | OK |
-| `initDaftarTransaksi(int $page = 1, int $per_page = 50, string $sort = 'desc', string $reference = null, string $merchant_ref = null, string $method = null,string $status = null)` | `Daftar Transaksi` | OK |
+| `initDaftarTransaksi(int $page, int $per_page = 50, string $sort, string $reference, string $merchant_ref, string $method, string $status)` | `Daftar Transaksi` | OK |
 | `initTransaction(string $merchantRef)` | `Transaksi Open/Close` | OK |
 | `initCallback()` | `Callback` | OK |
 
