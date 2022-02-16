@@ -9,10 +9,15 @@ _This package is made to make it easier for php users_
 
 IMPORTANT: Make sure you read the documentation and understand what these methods are used for!
 
-need PHP 7 and above to use this package
-## Instalation
+need PHP 8 and above to use this package
+## Instalation for PHP >8
 ```
 composer require muhammadnan/tripay-payment-gateway
+```
+
+## Instalation for PHP <8
+```
+composer require muhammadnan/tripay-payment-gateway:1.0.5.1
 ```
 
 ## Configuration
