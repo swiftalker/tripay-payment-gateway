@@ -205,10 +205,9 @@ class Main implements MainInterface {
                 break;
         }
 
-        $dotenv = Dotenv::createImmutable($immutable);
-        $load = $dotenv->safeLoad();
-
-        if ( ! empty($load)) {
+        if (file_exists($immutable.'/.env')) {
+            $dotenv = Dotenv::createImmutable($immutable);
+            $dotenv->load();
             $dotenv->required(['TRIPAY_API_KEY', 'TRIPAY_PRIVATE_KEY', 'TRIPAY_MERCHANT_CODE', 'TRIPAY_MODE']);
 
             if (empty($env_key)) {
@@ -217,7 +216,7 @@ class Main implements MainInterface {
 
             return $_ENV[$env_key];
         }
-        
+
         return null;
     }
 
