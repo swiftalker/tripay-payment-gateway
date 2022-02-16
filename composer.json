@@ -20,7 +20,7 @@
   },
   "require": {
     "guzzlehttp/guzzle": "^7.0",
-    "symfony/http-foundation": "^5.2",
+    "symfony/http-foundation": "^6.0",
     "vlucas/phpdotenv": "^5.3"
   },
   "require-dev": {
