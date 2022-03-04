@@ -123,7 +123,7 @@ $init = $main->initKalkulatorBiaya($code, $amount);
 the next method can be seen in the [request method](#request-available) or can be seen in examples
 
 ## Daftar Transaksi
-This API is used to obtain detailed transaction fee calculations for each channel based on a specified nominal
+This API is used to get a list of merchant transactions
 
 ```php
 $page = 1;
